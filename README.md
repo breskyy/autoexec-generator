@@ -1,4 +1,4 @@
-# CS:GO Dynamic Config Generator
+# CS2 autoexec generator
 
 A web-based tool to generate customizable configuration files for CS:GO, with options grouped into sections (e.g., "Mouse," "Sound," "Graphics") and default values pre-set for each setting. This tool makes it easy to tailor CS:GO settings without manually editing config files, by allowing users to select or deselect entire sections and adjust individual values.
 
