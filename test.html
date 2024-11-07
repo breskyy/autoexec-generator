@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Konfiguracja formularza CS:GO</title>
+</head>
+<body>
+  <h1>Konfiguracja Formularza</h1>
+  
+  <form id="configForm">
+    <div id="formContainer"></div>
+    <button type="submit">Generuj Config</button>
+  </form>
+  
+  <textarea id="output" rows="20" cols="70" placeholder="Wynik..."></textarea>
+
+  <script>
+    // Konfiguracja sekcji i pól
+    const configSections = {
+      myszka: [
+        { name: 'sensitivity', type: 'number', default: '2.05', placeholder: 'Główna czułość myszki', description: 'Główna czułość myszki.' },
+        { name: 'zoom_sensitivity_ratio_mouse', type: 'number', default: '1', placeholder: 'Czułość przy zoomie', description: 'Czułość przy zoomie.' },
+        { name: 'm_rawinput', type: 'checkbox', default: true, description: 'Włącza bezpośredni odczyt z myszki' }
+      ],
+      dzwiek: [
+        { name: 'volume', type: 'number', default: '0.20', placeholder: 'Ogólna głośność gry', description: 'Ogólna głośność gry.' },
+        { name: 'snd_mixahead', type: 'number', default: '0.025', placeholder: 'Opóźnienie dźwięku', description: 'Ustala opóźnienie dźwięku.' }
+      ],
+      grafika: [
+        { name: 'fps_max', type: 'number', default: '240', placeholder: 'Maksymalna liczba FPS', description: 'Maksymalna liczba FPS w grze.' },
+        { name: 'mat_monitorgamma', type: 'number', default: '2', placeholder: 'Poziom jasności', description: 'Poziom jasności gry.' }
+      ]
+      // Dodaj kolejne sekcje i pola według potrzeb
+    };
+
+    function createFormFields(sectionName, fields) {
+      const sectionDiv = document.createElement('div');
+      sectionDiv.classList.add('section');
+      
+      const sectionLabel = document.createElement('h3');
+      sectionLabel.textContent = sectionName.toUpperCase();
+      sectionDiv.appendChild(sectionLabel);
+      
+      fields.forEach(field => {
+        const fieldContainer = document.createElement('div');
+        const label = document.createElement('label');
+        label.textContent = field.description;
+        
+        let input;
+        if (field.type === 'checkbox') {
+          input = document.createElement('input');
+          input.type = 'checkbox';
+          input.name = field.name;
+          input.checked = field.default;
+        } else {
+          input = document.createElement('input');
+          input.type = field.type;
+          input.name = field.name;
+          input.placeholder = field.placeholder;
+          input.value = field.default;
+        }
+        
+        fieldContainer.appendChild(label);
+        fieldContainer.appendChild(input);
+        sectionDiv.appendChild(fieldContainer);
+      });
+      
+      return sectionDiv;
+    }
+
+    function generateForm() {
+      const formContainer = document.getElementById('formContainer');
+      formContainer.innerHTML = ''; // Czyści poprzednią zawartość
+      
+      Object.keys(configSections).forEach(section => {
+        const sectionFields = createFormFields(section, configSections[section]);
+        formContainer.appendChild(sectionFields);
+      });
+    }
+
+    document.getElementById('configForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      let output = '';
+      
+      Object.keys(configSections).forEach(section => {
+        output += `\n// ${section.toUpperCase()}\n`;
+        configSections[section].forEach(field => {
+          let value = formData.get(field.name);
+          if (field.type === 'checkbox') {
+            value = formData.has(field.name) ? '1' : '0';
+          }
+          output += `${field.name} "${value}" // ${field.description}\n`;
+        });
+      });
+      
+      document.getElementById('output').value = output;
+    });
+
+    generateForm(); // Generowanie formularza na początku
+  </script>
+</body>
+</html>
