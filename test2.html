@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Make Your Own Autoexec.cfg File to CS2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>CS2 Autoexec Generator</h1>
+
+  <section id="mouse">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>Myszka / Mouse</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+
+    <!-- mouse-sensitivity -->
+      <label for="mouse-sensitivity">Sensitivity: </label>
+      <br>
+      <input type="range" class="range-slider" id="mouse-sensitivity-slider" name="mouse-sensitivity-slider" min="0.01" max="5" step="0.01" value="2"/>
+
+      <input type="number" id="mouse-sensitivity" name="mouse-sensitivity" placeholder="Value (0.01 - 5.0)" min="0.01" max="5.0" step="0.01" value="2">
+      <p class="comment">// Główna czułość myszki. *</p>
+
+      <br/>
+    
+    <!-- zoom_sensitivity_ratio_mouse -->
+    <label for="zoom_sensitivity_ratio_mouse">Zoom sensitivity: </label>
+      <br>
+      <input type="range" class="range-slider" id="zoom-sensitivity-slider" name="zoom-sensitivity-slider" min="0.01" max="5" step="0.01" value="1"/>
+
+      <input type="number" id="zoom-sensitivity-ratio-mouse" name="zoom-sensitivity-ratio-mouse" placeholder="Value (0.01 - 5.0)" min="0.01" max="5.0" step="0.01" value="1">
+      <p class="comment">// Czułość myszki podczas celowania z awp/scout.</p>
+
+      <br/>
+  
+      <label for="m_rawinput">Raw input: </label>
+      <label class="switch">
+        <input type="checkbox" name="m_rawinput" id="m_rawinput" checked>
+        <span class="slider round"></span>
+      </label>
+      <p class="comment">// Włącza bezpośredni odczyt z myszki. (Ustawienia Windowsa nie wpływają na myszkę).</p>
+
+      <br/>
+  
+      <label for="m_customaccel">m_customaccel: </label>
+      <label class="switch">
+        <input type="checkbox" name="m_customaccel" id="m_customaccel">
+        <span class="slider round"></span>
+      </label>
+      <p class="comment">// Wyłączenie akceleracji myszy.</p>
+
+      <br/>
+  
+      <label for="m_mousespeed">m_mousespeed: </label>
+      <label class="switch">
+        <input type="checkbox" name="m_mousespeed" id="m_mousespeed">
+        <span class="slider round"></span>
+      </label>
+      <p class="comment">// Wyłączenie windowsowej akceleracji myszy.</p>
+  
+    </div>
+  </section>
+
+  <section id="audio">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>Audio / Audio</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label></td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+    
+      <label for="mouse-sensitivity">Sensitivity: </label>
+      <input type="number" name="mouse-sensitivity" id="mouse-sensitivity" placeholder="Value (0.01 - 10.0)" min="0.01" max="10.0" step="0.01" value="1">
+
+      <br/>
+
+      <label for="zoom-sensitivity">Zoom sensitivity: </label>
+      <input type="number" name="zoom-sensitivity" id="zoom-sensitivity" placeholder="Value (0.01 - 10.0)" min="0.01" max="10.0" step="0.01" value="1">
+
+      <br/>
+  
+      <label for="zoom-sensitivity">Raw input: </label>
+      <input type="number" name="zoom-sensitivity" id="zoom-sensitivity" placeholder="Value (0.01 - 10.0)" min="0.01" max="10.0" step="0.01" value="1">
+  
+    </div>
+  </section>
+
+  <section id="graphic">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>Grafika / Graphic</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label></td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+      <!-- fps_max -->
+      <label for="fps_max">FPS Max: </label>
+      <input type="number" name="fps_max" id="fps_max" placeholder="Value (0.01 - 10.0)" min="60" max="1000" step="1" value="240">
+      <p class="comment">// Maksymalna ilość FPS w grze. *</p>
+
+      <br/>
+      
+      <!-- fps_max_menu -->
+      <label for="fps_max_menu">FPS Max Manu: </label>
+      <input type="number" name="fps_max_menu" id="fps_max_menu" placeholder="Value (0.01 - 10.0)" min="60" max="500" step="1" value="60">
+      <p class="comment">// Maksymalna ilość FPS w menu. Możesz ustawić pod HZ w monitorze. *</p>
+
+      <br/><br/>
+
+      <!-- mat_monitorgamma -->
+      <label for="mat_monitorgamma">mat_monitorgamma: </label>
+      <input type="number" name="mat_monitorgamma" id="mat_monitorgamma" placeholder="Value (1.6 - 2.6)" min="1.6" max="2.6" step="0.01" value="2">
+      <p class="comment">// Poziom jasności gry. [min - 1.6, max 2.6] *</p>
+
+      <br/>
+
+      <!-- mat_monitorgamma_tv_enabled -->
+      <label for="mat_monitorgamma_tv_enabled">mat_monitorgamma_tv_enabled: </label>
+      <input type="number" name="mat_monitorgamma_tv_enabled" id="mat_monitorgamma_tv_enabled" placeholder="[0 - monitor, 1 - tv]" min="0" max="1" step="1" value="0">
+      <p class="comment">// Tryb wyświetlania - wpływa na gammę. [0 - monitor, 1 - tv]</p>
+
+      <br/>
+
+      <!-- mat_powersavingsmode -->
+      <label for="mat_powersavingsmode">mat_powersavingsmode: </label>
+      <input type="number" name="mat_powersavingsmode" id="mat_powersavingsmode" placeholder="[0 - wyłączone, 1 - włączone]" min="0" max="1" step="1" value="0">
+      <p class="comment">// Tryb oszczędzania energii. [0 - wyłączone, 1 - włączone]</p>
+
+      <br/>
+
+      <!-- r_drawtracers_firstperson -->
+      <label for="r_drawtracers_firstperson">r_drawtracers_firstperson: </label>
+      <input type="number" name="r_drawtracers_firstperson" id="r_drawtracers_firstperson" placeholder="[0 - wyłączone, 1 włączone]" min="0" max="1" step="1" value="0">
+      <p class="comment">// Lecące pociski z karabinu (Pierwsza osoba). Niektórym ustawienie tego na 1 może pomóc w kontrolowaniu spray. [0 - wyłączone, 1 włączone]</p>
+
+      <br/>
+
+      <!-- r_dynamic -->
+      <label for="r_dynamic">r_dynamic: </label>
+      <input type="number" name="r_dynamic" id="r_dynamic" placeholder="[0 - wyłączone, 1 włączone]" min="0" max="1" step="1" value="0">
+      <p class="comment">// Wyświetlanie dynamicznego światła np. rozbłysk flashy czy strzelania - zwiększa widoczność. [0 - wyłączone, 1 włączone]</p>
+
+      <br/>
+
+      <!-- r_player_visibility_mode -->
+      <label for="r_player_visibility_mode">r_player_visibility_mode: </label>
+      <input type="number" name="r_player_visibility_mode" id="r_player_visibility_mode" placeholder="[0 - wyłącza, 1 - włącza] " min="0" max="1" step="1" value="0">
+      <p class="comment">// Kontrast graczy. [0 - wyłącza, 1 - włącza]</p>
+
+
+      <br/>
+
+      <!-- cl_ping_fade_distance -->
+      <label for="cl_ping_fade_distance">cl_ping_fade_distance: </label>
+      <input type="number" name="cl_ping_fade_distance" id="cl_ping_fade_distance" placeholder="" min="100" max="500" step="1" value="350">
+      <p class="comment">// Odległość w jakiej ping ma zanikać między celownikiem a pingiem. [Standardowo - 300]</p>
+
+
+      <br/>
+
+      <!-- cl_ping_fade_deadzone -->
+      <label for="cl_ping_fade_deadzone">cl_ping_fade_deadzone: </label>
+      <input type="number" name="cl_ping_fade_deadzone" id="cl_ping_fade_deadzone" placeholder="" min="10" max="300" step="1" value="150">
+      <p class="comment">// Odległość w jakiej ping całkowicie znika między celownikiem a pingiem. [Standardowo - 60]</p>
+
+
+      <br/>
+
+      <!-- cl_teamid_overhead_mode -->
+      <label for="cl_teamid_overhead_mode">cl_teamid_overhead_mode: </label>
+      <input type="number" name="cl_teamid_overhead_mode" id="cl_teamid_overhead_mode" placeholder="" min="0" max="2" step="1" value="2">
+      <p class="comment">// Pokazywanie nicków przez ściany. [0 - wyłączone, 1 - znacznik, 2 - znacznik, nick i ekwipunek]</p>
+
+
+      <br/>
+
+      <!-- ui_mainmenu_bkgnd_movie_CC4ECB9 -->
+      <label for="ui_mainmenu_bkgnd_movie_CC4ECB9">ui_mainmenu_bkgnd_movie_CC4ECB9: </label>
+      <!-- <input type="text" name="ui_mainmenu_bkgnd_movie_CC4ECB9" id="ui_mainmenu_bkgnd_movie_CC4ECB9" placeholder="" min="0" max="1" step="1" value="cbble"> -->
+      <select name="ui_mainmenu_bkgnd_movie_CC4ECB9" id="ui_mainmenu_bkgnd_movie_CC4ECB9">
+        <option value="random">random</option>
+        <option value="cbble" selected>cbble</option>
+        <option value="sirocco_night">sirocco_night</option>
+        <option value="anubis">anubis</option>
+        <option value="nuke">nuke</option>
+        <option value="ancient">ancient</option>
+        <option value="vertigo">vertigo</option>
+      </select>
+      <p class="comment"></p>
+
+
+      <br/>
+
+      <!--  -->
+      <label for="">: </label>
+      <input type="number" name="" id="" placeholder="" min="0" max="1" step="1" value="0">
+      <p class="comment"></p>
+
+
+      <br/>
+
+      <!--  -->
+      <label for="">: </label>
+      <input type="number" name="" id="" placeholder="" min="0" max="1" step="1" value="0">
+      <p class="comment"></p>
+
+
+      <br/>
+
+      <!--  -->
+      <label for="">: </label>
+      <input type="number" name="" id="" placeholder="" min="0" max="1" step="1" value="0">
+      <p class="comment"></p>
+
+
+      <br/>
+  
+    </div>
+  </section>
+
+  <section id="viewmodel">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>Model widoku / Viewmodel</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label></td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+
+    </div>
+  </section>
+
+  <section id="hud">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>HUD / HUD</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label></td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+
+    </div>
+  </section>
+
+  <section id="view-model">
+    <div id="title">
+      <table>
+        <tr>
+          <td>
+            <h2>HUD / HUD</h2></td>
+          <td>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label></td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
+
+    </div>
+  </section>
+
+
+
+<section id="section-id">
+  <div id="title">
+    <table>
+      <tr>
+        <td>
+          <h2>HUD</h2></td>
+        <td>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label></td>
+      </tr>
+    </table>
+  </div>
+  <div id="content">
+
+    <span>Net Graph</span>
+    <label for="checkbox" class="switch">
+      <input type="checkbox" id="checkbox">
+      <span class="slider round"></span>
+    </label>
+
+  </div>
+</section>
+
+  
+  
+
+<section id="servers"></section>
+<table>
+  <tr>
+    <td>
+      <h2>Servers</h2>
+    </td>
+    <td>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>
+      <span>Name</span>
+    </td>
+    <td>
+      <input type="number" name="server-name" id="server-name">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span>connect</span>
+    </td>
+    <td>
+      <input type="number" name="server-ip" id="server-ip">
+    </td>
+    <td>
+      <button value="add">Add new</button>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      <h2>HUD</h2></td>
+    <td>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label></td>
+  </tr>
+</table>
+
+<p></p>
+  <form id="configForm">
+    <div id="formContainer"></div>
+    <button type="submit">Generuj Config</button>
+  </form>
+  
+  <textarea id="output" rows="20" cols="70" placeholder="Wynik..."></textarea>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
