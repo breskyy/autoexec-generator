@@ -20,19 +20,314 @@
   <script>
     // Konfiguracja sekcji i pól
     const configSections = {
-      myszka: [
-        { name: 'sensitivity', type: 'number', default: '2.05', placeholder: 'Główna czułość myszki', description: 'Główna czułość myszki.' },
-        { name: 'zoom_sensitivity_ratio_mouse', type: 'number', default: '1', placeholder: 'Czułość przy zoomie', description: 'Czułość przy zoomie.' },
-        { name: 'm_rawinput', type: 'checkbox', default: true, description: 'Włącza bezpośredni odczyt z myszki' }
-      ],
-      dzwiek: [
-        { name: 'volume', type: 'number', default: '0.20', placeholder: 'Ogólna głośność gry', description: 'Ogólna głośność gry.' },
-        { name: 'snd_mixahead', type: 'number', default: '0.025', placeholder: 'Opóźnienie dźwięku', description: 'Ustala opóźnienie dźwięku.' }
-      ],
-      grafika: [
-        { name: 'fps_max', type: 'number', default: '240', placeholder: 'Maksymalna liczba FPS', description: 'Maksymalna liczba FPS w grze.' },
-        { name: 'mat_monitorgamma', type: 'number', default: '2', placeholder: 'Poziom jasności', description: 'Poziom jasności gry.' }
-      ]
+  // 1) MYSZKA
+  myszka: [
+    {
+      name: 'sensitivity',
+      type: 'number',
+      default: '2.05',
+      placeholder: 'Główna czułość myszki',
+      description: 'Główna czułość myszki.'
+    },
+    {
+      name: 'zoom_sensitivity_ratio_mouse',
+      type: 'number',
+      default: '1',
+      placeholder: 'Czułość przy zoomie',
+      description: 'Czułość przy zoomie (AWP/scout).'
+    },
+    {
+      name: 'm_rawinput',
+      type: 'checkbox', 
+      default: true, 
+      description: 'Włącza bezpośredni odczyt z myszki (1 = on, 0 = off).'
+    },
+    {
+      name: 'm_customaccel',
+      type: 'checkbox',
+      default: false,
+      description: 'Akceleracja myszy (0 = wyłączona, 1 = włączona).'
+    },
+    {
+      name: 'm_mousespeed',
+      type: 'checkbox',
+      default: false,
+      description: 'Windowsowa akceleracja myszy (0 = wyłączona, 1 = włączona).'
+    }
+  ],
+
+  // 2) DŹWIĘK
+  dzwiek: [
+    {
+      name: 'volume',
+      type: 'number',
+      default: '0.20',
+      placeholder: 'Ogólna głośność gry',
+      description: 'Główna głośność gry (0.0–1.0).'
+    },
+    {
+      name: 'snd_mixahead',
+      type: 'number',
+      default: '0.025',
+      placeholder: 'Opóźnienie dźwięku',
+      description: 'Ustala opóźnienie dźwięku.'
+    },
+    {
+      name: 'voice_enable',
+      type: 'checkbox',
+      default: true,
+      description: 'Komunikacja głosowa w grze (1 = włączona, 0 = wyłączona).'
+    },
+    {
+      name: 'voice_scale',
+      type: 'number',
+      default: '0.7',
+      placeholder: 'Głośność komunikacji (0–1)',
+      description: 'Głośność komunikacji głosowej na 70%.'
+    },
+    {
+      name: 'voice_positional',
+      type: 'checkbox',
+      default: false,
+      description: 'Pozycyjna komunikacja głosowa (1 = włączona, 0 = wyłączona).'
+    },
+    {
+      name: 'snd_menumusic_volume',
+      type: 'number',
+      default: '0',
+      placeholder: 'Muzyka w menu (0–1)',
+      description: 'Głośność muzyki w menu.'
+    }
+  ],
+
+  // 3) GRAFIKA
+  grafika: [
+    {
+      name: 'fps_max',
+      type: 'number',
+      default: '240',
+      placeholder: 'Maksymalna liczba FPS',
+      description: 'Maksymalna liczba FPS w grze.'
+    },
+    {
+      name: 'fps_max_menu',
+      type: 'number',
+      default: '60',
+      placeholder: 'Maksymalna liczba FPS w menu',
+      description: 'Możesz ustawić pod HZ w monitorze.'
+    },
+    {
+      name: 'mat_monitorgamma',
+      type: 'number',
+      default: '2',
+      placeholder: 'Poziom jasności',
+      description: 'Poziom jasności gry (1.6–2.6).'
+    },
+    {
+      name: 'mat_monitorgamma_tv_enabled',
+      type: 'checkbox',
+      default: false,
+      description: 'Tryb wyświetlania (0 = monitor, 1 = tv).'
+    },
+    {
+      name: 'mat_powersavingsmode',
+      type: 'checkbox',
+      default: false,
+      description: 'Tryb oszczędzania energii (0 = off, 1 = on).'
+    },
+    {
+      name: 'r_drawtracers_firstperson',
+      type: 'checkbox',
+      default: true,
+      description: 'Lecące pociski z broni (1 = on, 0 = off).'
+    }
+  ],
+
+  // 4) HUD
+  hud: [
+    {
+      name: 'hud_scaling',
+      type: 'number',
+      default: '0.9',
+      placeholder: 'Skala HUD (0.5–1.0)',
+      description: 'Ogólna skala elementów HUD.'
+    },
+    {
+      name: 'safezonex',
+      type: 'number',
+      default: '1.0',
+      placeholder: 'Pozycja HUD (X)',
+      description: 'Pozycja hudu prawo–lewo.'
+    },
+    {
+      name: 'safezoney',
+      type: 'number',
+      default: '1.0',
+      placeholder: 'Pozycja HUD (Y)',
+      description: 'Pozycja hudu góra–dół.'
+    },
+    {
+      name: 'cl_hud_color',
+      type: 'number',
+      default: '1',
+      placeholder: 'Kolor HUD',
+      description: '1 = biały, 2 = jasnoniebieski, 3 = ciemnoniebieski, itd.'
+    },
+    {
+      name: 'cl_showfps',
+      type: 'checkbox',
+      default: false,
+      description: 'Włącza licznik FPS w lewym górnym rogu.'
+    }
+  ],
+
+  // 5) MODEL BRONI
+  modelBroni: [
+    {
+      name: 'cl_bobamt_lat',
+      type: 'number',
+      default: '0.1',
+      description: 'Poziom “bujania się” broni na boki.'
+    },
+    {
+      name: 'cl_bobamt_vert',
+      type: 'number',
+      default: '0.1',
+      description: 'Poziom “bujania się” broni w pionie.'
+    },
+    {
+      name: 'cl_righthand',
+      type: 'checkbox',
+      default: true,
+      description: '1 = prawa ręka, 0 = lewa ręka.'
+    },
+    {
+      name: 'viewmodel_fov',
+      type: 'number',
+      default: '68',
+      description: 'FOV broni.'
+    }
+  ],
+
+  // 6) CELOWNIK
+  celownik: [
+    {
+      name: 'cl_crosshairstyle',
+      type: 'number',
+      default: '4',
+      placeholder: 'Styl celownika',
+      description: '4 = statyczny, 2 = dynamiczny, itd.'
+    },
+    {
+      name: 'cl_crosshairsize',
+      type: 'number',
+      default: '2',
+      placeholder: 'Wielkość celownika',
+      description: 'Długość kresek celownika.'
+    },
+    {
+      name: 'cl_crosshairdot',
+      type: 'checkbox',
+      default: false,
+      description: 'Kropka w środku celownika (0/1).'
+    },
+    {
+      name: 'cl_crosshaircolor',
+      type: 'number',
+      default: '1',
+      description: 'Kolor celownika (1 = zielony, 2 = jasnoniebieski, itd.).'
+    }
+  ],
+
+  // 7) ŁĄCZE I SERWERY
+  laczeISerwery: [
+    {
+      name: 'rate',
+      type: 'number',
+      default: '786432',
+      description: 'Maksymalna przepustowość w bajtach/s.'
+    },
+    {
+      name: 'cl_updaterate',
+      type: 'number',
+      default: '128',
+      description: 'Liczba update’ów na sekundę z serwera (tickrate).'
+    },
+    {
+      name: 'cl_cmdrate',
+      type: 'number',
+      default: '128',
+      description: 'Liczba wysyłanych komend na sekundę (tickrate).'
+    },
+    {
+      name: 'mm_dedicated_search_maxping',
+      type: 'number',
+      default: '60',
+      description: 'Maksymalny ping przy wyszukiwaniu meczu.'
+    }
+  ],
+
+  // 8) POZOSTAŁE KOMENDY
+  pozostale: [
+    {
+      name: 'con_enable',
+      type: 'checkbox',
+      default: true,
+      description: 'Pozwala włączyć konsolę (~).'
+    },
+    {
+      name: 'cl_autowepswitch',
+      type: 'checkbox',
+      default: false,
+      description: 'Auto-przełączanie na nowo podniesioną broń.'
+    },
+    {
+      name: 'cl_disablefreezecam',
+      type: 'checkbox',
+      default: true,
+      description: 'Wyłącza efekt freezecam po zgonie.'
+    },
+    {
+      name: 'joystick',
+      type: 'checkbox',
+      default: false,
+      description: 'Wyłącza obsługę pada/joysticka (może dodać kilka FPS).'
+    }
+  ],
+
+  // 9) BINDY (skrótowe komendy)
+  bindy: [
+    {
+      name: 'bind SHIFT',
+      type: 'text',
+      default: '+speed; r_cleardecals',
+      description: 'Czyści krew + ciche chodzenie.'
+    },
+    {
+      name: 'bind CTRL',
+      type: 'text',
+      default: '+duck; r_cleardecals',
+      description: 'Czyści krew + kucanie.'
+    },
+    {
+      name: 'bind TAB',
+      type: 'text',
+      default: '+scorenet',
+      description: 'Wyświetlanie net_graph podczas wciśnięcia TAB.'
+    },
+    {
+      name: 'alias +scorenet',
+      type: 'text',
+      default: '+showscores; net_graph 1',
+      description: 'Pokazuje tabelę i net_graph.'
+    },
+    {
+      name: 'alias -scorenet',
+      type: 'text',
+      default: '-showscores; net_graph 0',
+      description: 'Chowa tabelę i net_graph.'
+    }
+  ]
       // Dodaj kolejne sekcje i pola według potrzeb
     };
 
